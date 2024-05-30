@@ -1,6 +1,7 @@
 ﻿using CustomersApp.Models;
 using CustomersApp.Models.DTOs;
 using CustomersApp.Models.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,7 +18,7 @@ namespace CustomersApp.Controllers
         }
 
         [Route("GetAll")]
-
+        [Authorize]
         [HttpGet] 
         public async Task<List<Customer>> GetAll() {
           
@@ -26,12 +27,16 @@ namespace CustomersApp.Controllers
         [Route("GetById/{id}")]
 
         [HttpGet]
+        [Authorize]
+
         public async Task<Customer> GetCustomer(int id)
         {
 
             return await _context.GetCustomerById(id);
         }
+
         [Route("Create/Customer")]
+        [Authorize]
 
         [HttpPost]
         public async Task<bool> Create(CreateCustomer createCustomer)
@@ -40,6 +45,7 @@ namespace CustomersApp.Controllers
             return await _context.AddCustomer(createCustomer);
         }
         [Route("update/Customer")]
+        [Authorize]
 
         [HttpPut]
         public async Task<bool> Update(Customer customer)
@@ -49,8 +55,9 @@ namespace CustomersApp.Controllers
         }
 
         [Route("Remove/{id}")]
+        [Authorize]
 
-        [HttpPut]
+        [HttpDelete]
         public async Task<bool> Remove(int id)
         {
 
