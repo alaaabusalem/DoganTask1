@@ -1,8 +1,15 @@
+using CustomersApp.Data;
+using CustomersApp.Models.Interfaces;
+using CustomersApp.Models.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddTransient<DapperDbContext>();
+builder.Services.AddTransient<ICustomer,CustomerService>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
