@@ -44,13 +44,13 @@ namespace CustomersApp.Controllers
 
             return await _context.AddCustomer(createCustomer);
         }
-        [Route("update/Customer")]
+        [Route("update/Customer/{id}")]
         [Authorize]
 
         [HttpPut]
-        public async Task<bool> Update(Customer customer)
+        public async Task<bool> Update(int id,[FromBody]Customer customer)
         {
-
+            customer.Id = id;
             return await _context.UpdateCustomer(customer);
         }
 

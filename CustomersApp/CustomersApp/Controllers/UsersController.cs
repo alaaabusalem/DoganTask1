@@ -20,10 +20,14 @@ namespace CustomersApp.Controllers
         [Route("login")]
 
         [HttpPost]
-        public  string Create(User user)
+        public IActionResult Login(User user)
         {
 
-            return  _user.login(user);
+            var token = _user.login(user);
+            if(token== "Wrong Name OR Passowred")
+                return Unauthorized();
+
+            return Ok(token);
         }
     }
 }
