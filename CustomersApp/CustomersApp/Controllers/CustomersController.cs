@@ -39,9 +39,10 @@ namespace CustomersApp.Controllers
         [Authorize]
 
         [HttpPost]
-        public async Task<bool> Create(CreateCustomer createCustomer)
+        public async Task<bool> Create(Customer customer)
         {
 
+            var createCustomer = (CreateCustomer)customer;
             return await _context.AddCustomer(createCustomer);
         }
         [Route("update/Customer/{id}")]

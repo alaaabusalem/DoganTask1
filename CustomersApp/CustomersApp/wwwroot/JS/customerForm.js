@@ -36,6 +36,7 @@ $(document).ready(function () {
         const phone = $('#phone').val();
 
         const customer = {
+            id: id ? id : 0, 
             name: name,
             email: email,
             phone: phone
